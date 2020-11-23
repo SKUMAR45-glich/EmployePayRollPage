@@ -39,10 +39,9 @@ class PayRollDetails {
         return this._startDate;
     }
     set startDate(startDate) {
-        this._startDate=startDate;
         if (startDate <= new Date())
             this._startDate = startDate.toLocaleString(undefined, {
-                timeZone: 'Mumbai'
+                timeZone: 'Asia/Kolkata'
             });
         else {
             throw "Invalid Start Date";
@@ -62,10 +61,10 @@ class PayRollDetails {
     }
     toString() {
 
-        const options = {year:'numeric',month:'long',day:'numeric'};
+       /* const options = {year:'numeric',month:'long',day:'numeric'};
 
         const empDate = (this.startDate>new Date())?"undefined":
-                         this.startDate.toLocaleString("Mumbai",options);
-        return "Id = " + this.id + "\nName = " + this.name + "\nSalary = " + this.salary + "\nGender = " + this.gender + " \nStartdate = " + this.empDate + "\nDepartments = " + this.department + "\nProfile = " + this.profile + "\nNote = " + this.note;
+                         this.startDate.toLocaleString("Mumbai",options);*/
+        return "Id = " + this.id + "\nName = " + this.name + "\nSalary = " + this.salary + "\nGender = " + this.gender + " \nStartdate = " + this.startDate + "\nDepartments = " + this.department + "\nProfile = " + this.profile + "\nNote = " + this.note;
     }
 } 
