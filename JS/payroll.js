@@ -1,18 +1,28 @@
-const salary=document.querySelector('#salary');
-const output=document.querySelector('.salary-output');
-output.textContent=salary.value;
-salary.addEventListener('input',function(){
-    output.textContent=salary.value;
-});
+window.addEventListener('DOMContentLoaded' , (event)=> {
+    const name = document.querySelector('#name');
+    const nameError = document.querySelector('#name-error');
 
-const name = document.querySelector('#name');
-const nameError = document.querySelector('#name-error');
-name.addEventListener('input', function () {
-    let namRegex = new RegExp(/^[A-Z][a-z]{2,}([ ][A-Za-z]{2,})?$/);
-    if (namRegex.test(name.value))
+    name.addEventListener('input', function () {
+    if(name.value.length == 0)
+    {
         nameError.textContent = "";
-    else
-        nameError.textContent = "Name is Incorrect";
+        return;
+    }
+    try{
+        (new PayrollModel()).name = name.value;
+        nameError.textContent = "";
+    }
+    catch(e){
+        nameError.textContent = e
+    }
+    });
+
+    const salary=document.querySelector('#salary');
+    const output=document.querySelector('.salary-output');
+    output.textContent=salary.value;
+    salary.addEventListener('input',function(){
+        output.textContent=salary.value;
+    });
 });
 function save(){
     try{    
