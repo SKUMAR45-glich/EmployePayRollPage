@@ -55,3 +55,24 @@ function getInputValueById(id){
     let value = document.querySelector(id).value;
     return value;
 }
+function save(){
+    try{    
+        let employeepayrollData = createEmployeePayroll();
+        createAndUpdateStorage(employeepayrollData);
+    }
+    catch(e)
+    {
+        alert(e);
+        return;
+    }
+}
+function createAndUpdateStorage(employeepayrollData){
+    let employeePayrollList = JSON.parse(localStorage.getItem("EmployeePayrollList"));
+    if(employeePayrollList != undefined)
+        employeePayrollList.push(employeepayrollData);
+    else
+        employeePayrollList = [employeepayrollData];
+    
+    alert("Added Object to the local Storage" + employeePayrollList.toString());
+    localStorage.setItem("EmployeePayrollList",JSON.stringify(employeePayrollList));
+}
