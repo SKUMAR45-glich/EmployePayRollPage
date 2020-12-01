@@ -1,9 +1,9 @@
-class PayRollDetails {
+class PayrollModel {
     get name() {
         return this._name;
     }
     set name(name) {
-        let nameRegex = RegExp('^[A-Z][a-zA-Z]{2,}$');
+        let nameRegex = RegExp('^[A-Z][a-z]{2,}([ ][A-Za-z]{2,})?$');
         if (nameRegex.test(name))
             this._name = name;
         else {
@@ -60,11 +60,6 @@ class PayRollDetails {
         this._id = id;
     }
     toString() {
-
-       /* const options = {year:'numeric',month:'long',day:'numeric'};
-
-        const empDate = (this.startDate>new Date())?"undefined":
-                         this.startDate.toLocaleString("Mumbai",options);*/
         return "Id = " + this.id + "\nName = " + this.name + "\nSalary = " + this.salary + "\nGender = " + this.gender + " \nStartdate = " + this.startDate + "\nDepartments = " + this.department + "\nProfile = " + this.profile + "\nNote = " + this.note;
     }
 } 

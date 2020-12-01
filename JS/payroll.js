@@ -24,9 +24,11 @@ window.addEventListener('DOMContentLoaded' , (event)=> {
         output.textContent=salary.value;
     });
 });
+
 function save(){
     try{    
-        createEmployeePayroll();
+        let employeepayrollData = createEmployeePayroll();
+        createAndUpdateStorage(employeepayrollData);
     }
     catch(e)
     {
@@ -37,20 +39,31 @@ function save(){
 let empPayroll = [];
 function createEmployeePayroll()
 {
-    
-    let payRollDetail = new PayRollDetails();
-    payRollDetail.name = getInputValueById('#name');
-    payRollDetail.profile = getSelectedValues('[name = profile]').pop();
-    payRollDetail.gender = getSelectedValues('[name=gender]').pop();
-    payRollDetail.department = getSelectedValues('[name=department]');
-    payRollDetail.salary = getInputValueById('#salary');
-    payRollDetail.note = getInputValueById('#notes');
+    let employeepayrollData = new PayrollModel();
+    employeepayrollData.name = getInputValueById('#name');
+    employeepayrollData.profile = getSelectedValues('[name = profile]').pop();
+    employeepayrollData.gender = getSelectedValues('[name=gender]').pop();
+    employeepayrollData.department = getSelectedValues('[name=department]');
+    employeepayrollData.salary = getInputValueById('#salary');
+    employeepayrollData.note = getInputValueById('#notes');
     let date = getInputValueById('#year') + "-"+ getInputValueById('#month') + "/" + getInputValueById('#day');
-    payRollDetail.startDate = new Date(date);
-    empPayroll.push(payRollDetail)
+    employeepayrollData.startDate = new Date(date);
+    empPayroll.push(employeepayrollData)
     alert("Your entry is successfully done");
     alert(empPayroll);
 }
+
+function createAndUpdateStorage(employeepayrollData){
+    let employeePayrollList = JSON.parse(localStorage.getItem("EmployeePayrollList"));
+    if(employeePayrollList != undefined)
+        employeePayrollList.push(employeepayrollData);
+    else
+        employeePayrollList = [employeepayrollData];
+    
+    alert("Added Object to the local Storage" + employeePayrollList.toString());
+    localStorage.setItem("EmployeePayrollList",JSON.stringify(employeePayrollList));
+}
+
 function getSelectedValues(attribute)
 {
     let allItems = document.querySelectorAll(attribute);
@@ -65,27 +78,10 @@ function getInputValueById(id){
     let value = document.querySelector(id).value;
     return value;
 }
-function save(){
-    try{    
-        let employeepayrollData = createEmployeePayroll();
-        createAndUpdateStorage(employeepayrollData);
-    }
-    catch(e)
-    {
-        alert(e);
-        return;
-    }
-}
-function createAndUpdateStorage(employeepayrollData){
-    let employeePayrollList = JSON.parse(localStorage.getItem("EmployeePayrollList"));
-    if(employeePayrollList != undefined)
-        employeePayrollList.push(employeepayrollData);
-    else
-        employeePayrollList = [employeepayrollData];
-    
-    alert("Added Object to the local Storage" + employeePayrollList.toString());
-    localStorage.setItem("EmployeePayrollList",JSON.stringify(employeePayrollList));
-}
+function getElementValueById(id){
+    let value = document.getElementById(id).value
+    return value;
+} 
 
 const resetForm = () => {
     document.querySelector("#name").value = "";
