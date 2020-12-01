@@ -26,9 +26,39 @@
                 Employee Details
                 <div class = "emp-count">10</div>
             </div>
-            <a href="../pages/EmployeePayrollForm.html" class="add-button">
-            <img src="../assets/icons/add-24px.svg" alt="">Add User</a>
+            <a href="../Pages/Payroll.html" class="add-button">
+            <img src="../Assest/AddButton.png" alt="" width="50px" height="50px">Add User</a>
         </div>
+    </div>
+    <div class="table-main">
+        <table id="display" class="table">
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Department</th>
+                <th>Salary</th>
+                <th>Start Date</th>
+                <th>Actions</th>
+            </tr>
+            <tr>
+                <td>
+                    <img class="profile" alt="" src="../Assest/Profile(2).jpg">
+                </td>
+                <td>Saurabh Kumar</td>
+                <td>Male</td>
+                <td>
+                    <div class="dept-label">Engineer</div>
+                    <div class="dept-label">Senior Analyst</div>
+                </td>
+                <td>50000</td>
+                <td>18 September 2020</td>
+                <td>
+                    <img id="1" onclick="remove(this)" alt="delete" src="../Assest/delete.jpg" width="50px" height="50px">
+                    <img id="1" onclick="update(this)" alt="update" src="../Assest/update.png" width="50px" height="50px">
+                </td>
+            </tr>
+        </table>
     </div>
 </body>
 </html>
