@@ -23,3 +23,36 @@ const createInnerHtml = () => {
     </tr>`;
     document.querySelector('#display').innerHTML = innerHtml;
 }
+
+const createEmployeePayrollJSON = () => {
+    let employeePayrollListLocal = [
+        {
+            _id: new Date().getTime(),
+            _name: "Saurabh Kumar",
+            _salary: "₹ 50000", 
+            _gender: "Male",
+            _department: ["Engineer","Senior Analyst"],
+            _notes: "Virat Kohli",
+            _profile: "../Assest/Profile(3).png",
+            _startDate: "18/09/2018, 12:00:00 AM"
+        },
+        {
+            _id: new Date().getTime() + 1,
+            _name: "Ganju", 
+            _salary: "₹ 50000",
+            _gender: "Male",
+            _department: ["Engineer", "Sales"],
+            _notes: "Wingmate",
+            _profile: "../Assest/Profile(4).png",
+            _startDate: "10/08/2019, 12:00:00 AM"
+        }
+    ];
+    return employeePayrollListLocal;
+}
+const getDeptHtml = (deptList) => {
+    let deptHtml = '';
+    for(const dept of deptList){
+        deptHtml = `${deptHtml} <div class="dept-label">${dept}</div>`
+    }
+    return deptHtml;
+}
